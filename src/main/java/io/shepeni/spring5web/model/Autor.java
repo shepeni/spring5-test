@@ -5,6 +5,7 @@
  */
 package io.shepeni.spring5web.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Autor {
     private String apellido;
     
     @ManyToMany(mappedBy = "autores")
-    private Set<Libro> libros;
+    private Set<Libro> libros = new HashSet<Libro>();
 
     public Autor() {
     }

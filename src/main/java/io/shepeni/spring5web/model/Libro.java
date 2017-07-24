@@ -5,6 +5,7 @@
  */
 package io.shepeni.spring5web.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Libro {
     @ManyToMany
     @JoinTable(name="libro_author", joinColumns=@JoinColumn(name="libro_id"),
             inverseJoinColumns=@JoinColumn(name="autor_id"))
-    private Set<Autor> autores;
+    private Set<Autor> autores = new HashSet<Autor>();
 
     public Libro() {
     }
