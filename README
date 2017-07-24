@@ -1,0 +1,7 @@
+Un proyecto simple y de referencia para estudiar spring 5, en seguimiento del excelente curso de Jhon Thompson Spring Framework 5 Begginer to Guru
+
+Depurar proyectos de Spring Boot en Netbeans 8.2:
+1) Click derecho en el proyecto, seleccionar propiedades
+2) Seleccionar acciones y de la lista de acciones editar Debug project
+3) Agregar al control Set Projects la linea:
+         jpda.listen=true
