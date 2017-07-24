@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -28,6 +30,8 @@ public class Libro {
     private String editorial;
     
     @ManyToMany
+    @JoinTable(name="libro_author", joinColumns=@JoinColumn(name="libro_id"),
+            inverseJoinColumns=@JoinColumn(name="autor_id"))
     private Set<Autor> autores;
 
     public Libro() {
@@ -88,10 +92,5 @@ public class Libro {
     public void setId(Long id) {
         this.id = id;
     }
-
-    
-  
-    
-    
     
 }
