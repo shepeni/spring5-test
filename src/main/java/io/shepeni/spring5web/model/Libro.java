@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -28,7 +29,8 @@ public class Libro {
     
     private String titulo;
     private String isbn;
-    private String editorial;
+    @ManyToOne
+    private Editorial editorial;
     
     @ManyToMany
     @JoinTable(name="libro_author", joinColumns=@JoinColumn(name="libro_id"),
@@ -38,22 +40,19 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(String titulo, String isbn, String editorial) {
+    public Libro(String titulo, String isbn, Editorial editorial) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.editorial = editorial;
     }
 
-    public Libro(String titulo, String isbn, String editorial, Set<Autor> autores) {
+    public Libro(String titulo, String isbn, Editorial editorial, Set<Autor> autores) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.editorial = editorial;
         this.autores = autores;
     }
 
-    
-    
-    
     public String getTitulo() {
         return titulo;
     }
@@ -70,11 +69,11 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public String getEditorial() {
+    public Editorial getEditorial() {
         return editorial;
     }
 
-    public void setEditorial(String editorial) {
+    public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
 

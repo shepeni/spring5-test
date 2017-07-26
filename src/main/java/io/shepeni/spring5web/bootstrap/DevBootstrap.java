@@ -6,8 +6,10 @@
 package io.shepeni.spring5web.bootstrap;
 
 import io.shepeni.spring5web.model.Autor;
+import io.shepeni.spring5web.model.Editorial;
 import io.shepeni.spring5web.model.Libro;
 import io.shepeni.spring5web.repositories.RepositorioAutor;
+import io.shepeni.spring5web.repositories.RepositorioEditorial;
 import io.shepeni.spring5web.repositories.RepositorioLibro;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -23,10 +25,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
     
     RepositorioAutor repositorioAutor;
     RepositorioLibro repositorioLibro;
+    RepositorioEditorial repositorioEditorial;
 
-    public DevBootstrap(RepositorioAutor repositorioAutor, RepositorioLibro repositorioLibro) {
+    public DevBootstrap(RepositorioAutor repositorioAutor, RepositorioLibro repositorioLibro,RepositorioEditorial repositorioEditorial)  {
         this.repositorioAutor = repositorioAutor;
         this.repositorioLibro = repositorioLibro;
+        this.repositorioEditorial = repositorioEditorial;
     }
         
     @Override
@@ -37,20 +41,25 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
     public void initData(){
         
         Autor gabriel = new Autor("Gabriel", "Garcia Marquez");
-        Libro cien = new Libro("Cien añños de soledad", "7329372837", "planet");
+        Editorial planeta = new Editorial("planeta");
+        Libro cien = new Libro("Cien añños de soledad", "7329372837", planeta);
         gabriel.getLibros().add(cien);
         cien.getAutores().add(gabriel);
         
+        
         repositorioAutor.save(gabriel);
+        repositorioEditorial.save(planeta);
         repositorioLibro.save(cien);
         
         
         Autor victorHugo = new Autor("victor Hugo", "");
-        Libro miserables = new Libro("Los miserables", "102983102938", "Sepan Cuantos");
+        Editorial sepanCuantos = new Editorial("Sepan cuantos");
+        Libro miserables = new Libro("Los miserables", "102983102938", sepanCuantos);
         victorHugo.getLibros().add(miserables);
         miserables.getAutores().add(victorHugo);
                 
         repositorioAutor.save(victorHugo);
+        repositorioEditorial.save(sepanCuantos);
         repositorioLibro.save(miserables);
         
     }
