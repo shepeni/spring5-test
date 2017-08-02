@@ -6,6 +6,7 @@
 package io.shepeni.spring5web.controller;
 
 import io.shepeni.spring5web.repositories.RepositorioLibro;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ControladorLibros {
     
-    
-    RepositorioLibro repositorioLibro;
+    @Autowired
+    private RepositorioLibro repositorioLibro;
 
-    public RepositorioLibro getRepositorioLibro() {
-        return repositorioLibro;
-    }
 
     public void setRepositorioLibro(RepositorioLibro repositorioLibro) {
         this.repositorioLibro = repositorioLibro;
@@ -33,6 +31,6 @@ public class ControladorLibros {
     @RequestMapping("/libros")
     public String getLibros(Model model){
         model.addAttribute("libros", repositorioLibro.findAll());
-        return "books";
+        return "libros";
     }
 }
